@@ -13,8 +13,9 @@ class RoomTest < MiniTest::Test
     @song3 = Song.new("Mr November")
 
     @guest1 = Guest.new("Alice", 100)
+    @guest2 = Guest.new("Rob", 25)
     @room1 = Room.new("Green Room", 10, [@song1, @song2], [@guest1])
-
+    @room2 = Room.new("Red Room", 15, [@song1, @song2], [@guest1, @guest2])
   end
 
   def test_room_has_name
@@ -36,6 +37,17 @@ class RoomTest < MiniTest::Test
   def test_can_add_song_to_room
     expected = @room1.add_song_to_room(@song3).length
     assert_equal(3, expected)
+  end
+
+  def test_can_check_in_guest
+    expected = @room1.check_in(@guest2).length
+    assert_equal(2, expected)
+  end
+
+  def test_can_check_out_guest
+    @room2.check_out(@guest1)
+    expected = @room2.guests.length
+    assert_equal(1, expected)
   end
 
 

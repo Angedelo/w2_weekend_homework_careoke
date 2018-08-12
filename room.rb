@@ -11,7 +11,19 @@ class Room
   end
 
   def add_song_to_room(song)
-    songs.push(song)
+    @songs.push(song)
+  end
+
+  def check_in(guest)
+    @guests.push(guest)
+  end
+
+  def check_out(leaving_guest)
+    # if guests.any? {|guest| guest == leaving_guest}
+      @guests.delete(leaving_guest)
+    # else
+    #   return "Sorry this guest isn't in this room"
+    # end
   end
 
 
