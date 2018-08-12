@@ -16,6 +16,7 @@ class RoomTest < MiniTest::Test
     @guest2 = Guest.new("Rob", 25)
     @room1 = Room.new("Green Room", 10, [@song1, @song2], [@guest1])
     @room2 = Room.new("Red Room", 15, [@song1, @song2], [@guest1, @guest2])
+    @room3 = Room.new("Small Room", 1, [], [@guest1])
   end
 
   def test_room_has_name
@@ -39,15 +40,23 @@ class RoomTest < MiniTest::Test
     assert_equal(3, expected)
   end
 
-  def test_can_check_in_guest
+  def test_check_in_guest
     expected = @room1.check_in(@guest2).length
     assert_equal(2, expected)
+  end
+
+  def test_check_in_guest_over_capacity
+    assert_equal("Sorry, we're too busy", @room3.check_in(@guest2))
   end
 
   def test_can_check_out_guest
     @room2.check_out(@guest1)
     expected = @room2.guests.length
     assert_equal(1, expected)
+  end
+
+  def test_can_check_out_guest__no_guest
+    assert_equal("Sorry this guest isn't in this room", @room1.check_out(@guest2))
   end
 
 

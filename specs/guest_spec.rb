@@ -39,9 +39,4 @@ class GuestTest < MiniTest::Test
     assert_equal("Sorry, this room doesn't have that song", expected)
   end
 
-  # def guest_can_check_in
-  #   @guest1.check_in("Green Room")
-  #   assert_equal(["Alice"], @room1.guests)
-  # end
-
 end

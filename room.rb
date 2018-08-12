@@ -15,15 +15,19 @@ class Room
   end
 
   def check_in(guest)
-    @guests.push(guest)
+    if @capacity > @guests.length
+      @guests.push(guest)
+    else
+      return "Sorry, we're too busy"
+    end
   end
 
   def check_out(leaving_guest)
-    # if guests.any? {|guest| guest == leaving_guest}
+    if guests.any? {|guest| guest == leaving_guest}
       @guests.delete(leaving_guest)
-    # else
-    #   return "Sorry this guest isn't in this room"
-    # end
+    else
+      return "Sorry this guest isn't in this room"
+    end
   end
 
 
