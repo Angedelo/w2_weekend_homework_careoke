@@ -33,9 +33,10 @@ class RoomTest < MiniTest::Test
     assert_equal(1, @room1.guests.length)
   end
 
-  # def test_can_add_song_to_room
-  #   add_song_to_room(@room1, @song3)
-  # end
+  def test_can_add_song_to_room
+    expected = @room1.add_song_to_room(@song3).length
+    assert_equal(3, expected)
+  end
 
 
 end
